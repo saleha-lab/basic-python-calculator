@@ -1,22 +1,21 @@
-# calculator.py
+import streamlit as st
 
-print("Welcome to the Calculator!")
-num1 = float(input("Enter first number: "))
-op = input("Enter operator (+, -, *, /): ")
-num2 = float(input("Enter second number: "))
+st.title("Basic Python Calculator")
 
-if op == "+":
-    result = num1 + num2
-elif op == "-":
-    result = num1 - num2
-elif op == "*":
-    result = num1 * num2
-elif op == "/":
-    if num2 != 0:
-        result = num1 / num2
-    else:
-        result = "Error! Division by zero."
-else:
-    result = "Invalid operator!"
+num1 = st.number_input("Enter first number")
+num2 = st.number_input("Enter second number")
+op = st.selectbox("Select operation", ["+", "-", "*", "/"])
 
-print("Result:", result)
+if st.button("Calculate"):
+    if op == "+":
+        result = num1 + num2
+    elif op == "-":
+        result = num1 - num2
+    elif op == "*":
+        result = num1 * num2
+    elif op == "/":
+        if num2 != 0:
+            result = num1 / num2
+        else:
+            result = "Error: Division by zero"
+    st.write("Result:", result)
